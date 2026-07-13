@@ -1,0 +1,355 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+
+<div
+  class="custom-footer section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --footer-gap: {{ section.settings.gap }}px;
+    --footer-logo-visible-height: {{ section.settings.bottom_logo_visible_height }}px;
+    --footer-logo-offset: {{ section.settings.bottom_logo_offset }}px;
+  "
+>
+  <div class="custom-footer__top">
+    <div class="custom-footer__newsletter">
+      <h2>{{ section.settings.newsletter_heading }}</h2>
+
+      {% form 'customer', class: 'custom-footer__form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        <input
+          type="email"
+          name="contact[email]"
+          placeholder="{{ section.settings.email_placeholder }}"
+          required
+        >
+
+        <button type="submit">
+          {{ section.settings.button_label }}
+        </button>
+      {% endform %}
+    </div>
+
+    <div class="custom-footer__menus">
+      <div class="custom-footer__menu">
+        <h3>{{ section.settings.menu_1_heading }}</h3>
+        {% if section.settings.menu_1 != blank %}
+          {% for link in linklists[section.settings.menu_1].links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="custom-footer__menu">
+        <h3>{{ section.settings.menu_2_heading }}</h3>
+        {% if section.settings.menu_2 != blank %}
+          {% for link in linklists[section.settings.menu_2].links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="custom-footer__menu">
+        <h3>{{ section.settings.social_heading }}</h3>
+
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}">Facebook</a>
+        {% endif %}
+
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}">Instagram</a>
+        {% endif %}
+
+        {% if settings.social_tiktok_link != blank %}
+          <a href="{{ settings.social_tiktok_link }}">Tiktok</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if section.settings.bottom_logo != blank %}
+    <div class="custom-footer__bottom-logo">
+      {{
+        section.settings.bottom_logo
+        | image_url: width: 3000
+        | image_tag:
+          loading: 'lazy',
+          class: 'custom-footer__bottom-logo-image',
+          alt: section.settings.bottom_logo.alt
+      }}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .custom-footer {
+    overflow: hidden;
+  }
+
+  .custom-footer__top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--footer-gap);
+    align-items: start;
+  }
+
+  .custom-footer__newsletter h2 {
+    max-width: 560px;
+    margin: 0 0 28px;
+    font-family: 'Garalama', sans-serif !important;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .custom-footer__form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 540px;
+  }
+
+  .custom-footer__form input {
+    width: 100%;
+    max-width: 270px;
+    height: 54px;
+    padding: 0 16px;
+    border: 1px solid rgb(var(--color-border-rgb));
+    background: transparent;
+    color: rgb(var(--color-foreground-rgb));
+    font-size: 15px;
+  }
+
+  .custom-footer__form button {
+    min-width: 170px;
+    height: 54px;
+    border: 0;
+    background: rgb(var(--color-foreground-rgb));
+    color: rgb(var(--color-background-rgb));
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .custom-footer__menus {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px;
+  }
+
+  .custom-footer__menu h3 {
+    margin: 0 0 24px;
+    font-family: 'Garalama', sans-serif !important;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .custom-footer__menu a {
+    display: block;
+    margin-bottom: 13px;
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .custom-footer__bottom-logo {
+    margin-top: 80px;
+    height: var(--footer-logo-visible-height);
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-footer__bottom-logo-image {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translateY(var(--footer-logo-offset));
+  }
+
+  @media screen and (max-width: 989px) {
+    .custom-footer__top {
+      grid-template-columns: 1fr;
+    }
+
+    .custom-footer__menus {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-footer__newsletter h2 {
+      font-size: 18px;
+    }
+
+    .custom-footer__form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .custom-footer__form input,
+    .custom-footer__form button {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .custom-footer__menus {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .custom-footer__bottom-logo {
+      margin-top: 48px;
+      height: calc(var(--footer-logo-visible-height) * 0.6);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom footer",
+  "class": "section-wrapper",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page"
+        },
+        {
+          "value": "full-width",
+          "label": "Full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Lorem ipsum aliquam quam non vehicula eget."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Lorem Ipsum"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_heading",
+      "label": "Menu 1 heading",
+      "default": "Lorem"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_heading",
+      "label": "Menu 2 heading",
+      "default": "Help"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social heading",
+      "default": "Social"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_logo",
+      "label": "Bottom logo image"
+    },
+    {
+      "type": "range",
+      "id": "bottom_logo_visible_height",
+      "label": "Bottom logo visible height",
+      "min": 40,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "bottom_logo_offset",
+      "label": "Bottom logo vertical offset",
+      "min": -500,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom footer"
+    }
+  ]
+}
+{% endschema %}

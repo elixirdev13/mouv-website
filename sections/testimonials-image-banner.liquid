@@ -1,0 +1,206 @@
+<div
+  class="testimonial-banner color-{{ section.settings.color_scheme }}"
+  style="
+    --testimonial-height: {{ section.settings.section_height }}px;
+    --testimonial-mobile-height: {{ section.settings.mobile_section_height }}px;
+    --testimonial-padding-x: {{ section.settings.padding_x }}px;
+    --testimonial-heading-size: {{ section.settings.heading_size }}px;
+    --testimonial-card-width: {{ section.settings.card_width }}px;
+  "
+>
+  {% if section.settings.image != blank %}
+    {{
+      section.settings.image
+      | image_url: width: 2400
+      | image_tag:
+        loading: 'lazy',
+        class: 'testimonial-banner__image',
+        alt: section.settings.image.alt
+    }}
+  {% else %}
+    {{ 'hero-apparel-1' | placeholder_svg_tag: 'testimonial-banner__image placeholder-svg' }}
+  {% endif %}
+
+  <div class="testimonial-banner__content">
+    <h2>{{ section.settings.heading }}</h2>
+
+    <div class="testimonial-banner__card">
+      <div class="testimonial-banner__quote">
+        {{ section.settings.quote }}
+      </div>
+
+      <div class="testimonial-banner__name">
+        {{ section.settings.name_location }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .testimonial-banner {
+    position: relative;
+    min-height: var(--testimonial-height);
+    overflow: hidden;
+  }
+
+  .testimonial-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .testimonial-banner__content {
+    position: relative;
+    z-index: 2;
+    min-height: var(--testimonial-height);
+    padding: 50px var(--testimonial-padding-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .testimonial-banner__content h2 {
+    margin: 0;
+    font-family: 'Garalama', sans-serif !important;
+    font-size: var(--testimonial-heading-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .testimonial-banner__card {
+    width: min(100%, var(--testimonial-card-width));
+    background: rgba(58, 58, 58, 0.88);
+    color: #ffffff;
+    padding: 28px 30px;
+  }
+
+  .testimonial-banner__quote {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .testimonial-banner__name {
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 749px) {
+    .testimonial-banner {
+      min-height: var(--testimonial-mobile-height);
+    }
+
+    .testimonial-banner__content {
+      min-height: var(--testimonial-mobile-height);
+      padding: 32px 20px;
+    }
+
+    .testimonial-banner__card {
+      padding: 22px;
+    }
+
+    .testimonial-banner__quote {
+      font-size: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Testimonials banner",
+  "tag": "section",
+  "class": "testimonial-banner-wrapper section-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote",
+      "default": "<p>“Lorem ipsum dolor sit amet consectetur. Cras aenean ut et duis quis cum commodo ut. Id ipsum eget molestie placerat at.”</p>"
+    },
+    {
+      "type": "text",
+      "id": "name_location",
+      "label": "Name and location",
+      "default": "Name, Location"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Desktop height",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_height",
+      "label": "Mobile height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "Desktop side padding",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width",
+      "min": 280,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 460
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

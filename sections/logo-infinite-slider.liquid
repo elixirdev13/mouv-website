@@ -1,0 +1,248 @@
+<div
+  class="logo-loop color-{{ section.settings.color_scheme }}"
+  style="
+    --logo-loop-speed: {{ section.settings.speed }}s;
+    --logo-loop-gap: {{ section.settings.gap }}px;
+    --logo-loop-padding-y: {{ section.settings.padding_y }}px;
+    --logo-loop-border-width: {{ section.settings.border_width }}px;
+    --logo-loop-font-size: {{ section.settings.font_size }}px;
+    --logo-loop-letter-spacing: {{ section.settings.letter_spacing }}px;
+    --logo-loop-logo-width: {{ section.settings.logo_width }}px;
+  "
+>
+  <div class="logo-loop__viewport">
+    <div class="logo-loop__track">
+      {% for i in (1..2) %}
+        <div class="logo-loop__group" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
+          {% for block in section.blocks %}
+            <div class="logo-loop__item" {{ block.shopify_attributes }}>
+              {% case block.type %}
+                {% when 'logo_item' %}
+                  {% if block.settings.logo != blank %}
+                    {{
+                      block.settings.logo
+                      | image_url: width: 600
+                      | image_tag:
+                        class: 'logo-loop__image',
+                        loading: 'lazy',
+                        alt: block.settings.logo.alt | default: block.settings.text
+                    }}
+                  {% else %}
+                    <span class="logo-loop__text">
+                      {{ block.settings.text }}
+                    </span>
+                  {% endif %}
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .logo-loop {
+    overflow: hidden;
+    padding-block: var(--logo-loop-padding-y);
+    border-block: var(--logo-loop-border-width) solid rgb(var(--color-border-rgb));
+  }
+
+  .logo-loop__viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .logo-loop__track {
+    display: flex;
+    width: max-content;
+    animation: logo-loop-marquee var(--logo-loop-speed) linear infinite;
+  }
+
+  .logo-loop__group {
+    display: flex;
+    align-items: center;
+    gap: var(--logo-loop-gap);
+    padding-inline-end: var(--logo-loop-gap);
+  }
+
+  .logo-loop__item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .logo-loop__text {
+    font-family: 'Garalama', sans-serif !important;
+    font-size: var(--logo-loop-font-size) !important;
+    font-weight: 400;
+    line-height: 1 !important;
+    letter-spacing: var(--logo-loop-letter-spacing) !important;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .logo-loop__image {
+    display: block;
+    width: var(--logo-loop-logo-width);
+    max-width: var(--logo-loop-logo-width);
+    height: auto;
+  }
+
+  @keyframes logo-loop-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .logo-loop {
+      --logo-loop-padding-y: 18px;
+      --logo-loop-gap: 44px;
+      --logo-loop-font-size: 34px;
+      --logo-loop-logo-width: 140px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo infinite slider",
+  "tag": "section",
+  "class": "logo-loop-wrapper section-wrapper",
+  "blocks": [
+    {
+      "type": "logo_item",
+      "name": "Logo item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text fallback",
+          "default": "LOGO"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 20,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Text size",
+      "min": 20,
+      "max": 90,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo image width",
+      "min": 60,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo infinite slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "logo_item",
+          "settings": {
+            "text": "LOGO"
+          }
+        },
+        {
+          "type": "logo_item",
+          "settings": {
+            "text": "LOGO"
+          }
+        },
+        {
+          "type": "logo_item",
+          "settings": {
+            "text": "LOGO"
+          }
+        },
+        {
+          "type": "logo_item",
+          "settings": {
+            "text": "LOGO"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

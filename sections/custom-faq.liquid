@@ -1,0 +1,261 @@
+<div
+  class="custom-faq color-{{ section.settings.color_scheme }}"
+  style="
+    --faq-padding-top: {{ section.settings.padding_top }}px;
+    --faq-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --faq-left-width: {{ section.settings.left_width }}px;
+    --faq-heading-size: {{ section.settings.heading_size }}px;
+    --faq-heading-gap: {{ section.settings.heading_gap }}px;
+  "
+>
+  <div class="custom-faq__inner {% if section.settings.section_width == 'page-width' %}page-width{% endif %}">
+    <div class="custom-faq__left">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="custom-faq__text">{{ section.settings.text }}</div>
+    </div>
+
+    <div class="custom-faq__right">
+      {% for block in section.blocks %}
+        <details class="custom-faq__item" {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.question }}</span>
+            <span class="custom-faq__icon">+</span>
+          </summary>
+          <div class="custom-faq__answer">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .custom-faq {
+    background: #050505;
+    padding-block-start: var(--faq-padding-top);
+    padding-block-end: var(--faq-padding-bottom);
+  }
+
+  .custom-faq__inner {
+    display: grid !important;
+    grid-template-columns: var(--faq-left-width) minmax(0, 1fr);
+    width: 100%;
+    min-height: 280px;
+    border-top: 1px solid rgba(255,255,255,.22);
+  }
+
+  .custom-faq__left {
+    padding: 24px 28px;
+    border-right: 1px solid rgba(255,255,255,.22);
+  }
+
+  .custom-faq__left h2 {
+    max-width: 210px;
+    margin: 0 0 var(--faq-heading-gap);
+    font-family: 'Garalama', sans-serif !important;
+    font-size: var(--faq-heading-size);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .custom-faq__text {
+    max-width: 210px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .custom-faq__text p,
+  .custom-faq__answer p {
+    margin: 0;
+  }
+
+  .custom-faq__right {
+    padding: 12px 28px 20px;
+    min-width: 0;
+  }
+
+  .custom-faq__item {
+    border-bottom: 1px solid rgba(255,255,255,.22);
+  }
+
+  .custom-faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 0 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .custom-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .custom-faq__icon {
+    color: #fff;
+    font-size: 16px;
+    transition: transform .2s ease;
+  }
+
+  .custom-faq__item[open] .custom-faq__icon {
+    transform: rotate(45deg);
+  }
+
+  .custom-faq__answer {
+    padding: 0 40px 16px 0;
+    color: #fff;
+    opacity: .75;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-faq__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .custom-faq__left {
+      border-right: 0;
+      border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+
+    .custom-faq__left h2 {
+      margin-bottom: 40px;
+    }
+
+    .custom-faq__right {
+      padding: 8px 20px 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom FAQ",
+  "tag": "section",
+  "class": "custom-faq-wrapper section-wrapper",
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Lorem ipsum dolor sit amet consectetur"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros.</p>"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Left text",
+      "default": "<p>Lorem ipsum dolor sit amet consectetur.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "left_width",
+      "label": "Left column width",
+      "min": 200,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space between heading and subheading",
+      "min": 20,
+      "max": 180,
+      "step": 10,
+      "unit": "px",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ",
+      "category": "Custom",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

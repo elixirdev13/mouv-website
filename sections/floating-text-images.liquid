@@ -1,0 +1,289 @@
+<div
+  class="floating-text-images color-{{ section.settings.color_scheme }}"
+  style="
+    --fti-padding-top: {{ section.settings.padding_top }}px;
+    --fti-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --fti-heading-size: {{ section.settings.heading_size }}px;
+    --fti-text-size: {{ section.settings.text_size }}px;
+    --fti-image-size: {{ section.settings.image_size }}px;
+    --fti-mobile-image-size: {{ section.settings.mobile_image_size }}px;
+  "
+>
+  <div class="floating-text-images__inner section {{ section.settings.section_width }}">
+    {% for block in section.blocks %}
+      <div class="floating-text-images__image floating-text-images__image--{{ forloop.index }}" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          {{
+            block.settings.image
+            | image_url: width: 700
+            | image_tag:
+              loading: 'lazy',
+              class: 'floating-text-images__img',
+              alt: block.settings.image.alt
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'floating-text-images__img placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="floating-text-images__content">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="floating-text-images__text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .floating-text-images {
+    overflow: hidden;
+    padding-block-start: var(--fti-padding-top);
+    padding-block-end: var(--fti-padding-bottom);
+  }
+
+  .floating-text-images__inner {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .floating-text-images__content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+  }
+
+  .floating-text-images__content h2 {
+    margin: 0 0 26px;
+    font-family: 'Garalama', sans-serif !important;
+    font-size: var(--fti-heading-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .floating-text-images__text {
+    font-size: var(--fti-text-size);
+    line-height: 1.55;
+    letter-spacing: 1.4px;
+  }
+
+  .floating-text-images__text p {
+    margin: 0 0 34px;
+  }
+
+  .floating-text-images__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .floating-text-images__image {
+    position: absolute;
+    width: var(--fti-image-size);
+    height: var(--fti-image-size);
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .floating-text-images__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .floating-text-images__image--1 {
+    left: -4%;
+    top: 37%;
+  }
+
+  .floating-text-images__image--2 {
+    left: 6%;
+    top: 53%;
+  }
+
+  .floating-text-images__image--3 {
+    right: 0;
+    top: 12%;
+  }
+
+  .floating-text-images__image--4 {
+    right: -2%;
+    bottom: 6%;
+  }
+
+  .floating-text-images__image--5 {
+    right: 7%;
+    bottom: -2%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .floating-text-images__inner {
+      min-height: 680px;
+      align-items: center;
+    }
+
+    .floating-text-images__content {
+      max-width: 88%;
+    }
+
+    .floating-text-images__image {
+      width: var(--fti-mobile-image-size);
+      height: var(--fti-mobile-image-size);
+    }
+
+    .floating-text-images__image--1 {
+      left: -8%;
+      top: 12%;
+    }
+
+    .floating-text-images__image--2 {
+      left: 8%;
+      top: 20%;
+    }
+
+    .floating-text-images__image--3 {
+      right: -8%;
+      top: 8%;
+    }
+
+    .floating-text-images__image--4 {
+      right: -10%;
+      bottom: 9%;
+    }
+
+    .floating-text-images__image--5 {
+      right: 12%;
+      bottom: 2%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Floating text images",
+  "tag": "section",
+  "class": "floating-text-images-wrapper section-wrapper",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Floating image",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lorem Ipsum"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Lorem ipsum dolor sit amet consectetur. Aliquam integer maecenas integer cursus. Tortor tempor duis mattis amet imperdiet nec cursus vel sit. Dignissim mauris in et montes ullamcorper volutpat. Pretium feugiat aliquet bibendum fusce pharetra.</p><p>Maecenas sed suspendisse eget morbi porttitor pellentesque egestas vitae. Tempor sed dui eu rhoncus malesuada quis. Condimentum diam vitae erat turpis eget turpis. Ultrices porttitor duis aliquam orci pretium aliquam augue donec dignissim.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 18,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Desktop image size",
+      "min": 80,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_size",
+      "label": "Mobile image size",
+      "min": 60,
+      "max": 180,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Floating text images",
+      "category": "Custom",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
