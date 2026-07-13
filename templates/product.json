@@ -162,14 +162,6 @@
                 "price_tVjtKg"
               ]
             },
-            "breadcrumb_liquid": {
-              "type": "custom-liquid",
-              "name": "Breadcrumb",
-              "settings": {
-                "custom_liquid": "<nav class=\"product-breadcrumb\">{% assign _col = product.collections.first %}<a href=\"{{ routes.root_url }}\">Home</a> <span aria-hidden=\"true\">›</span> {% if _col != blank %}<a href=\"{{ _col.url }}\">{{ _col.title }}</a> <span aria-hidden=\"true\">›</span> {% endif %}<span class=\"product-breadcrumb__current\">{{ product.title }}</span></nav><style>.product-breadcrumb{font-size:0.8125rem;color:rgba(var(--color-foreground-rgb),0.6);display:flex;flex-wrap:wrap;gap:6px;align-items:center}.product-breadcrumb a{color:inherit;text-decoration:none}.product-breadcrumb a:hover{text-decoration:underline}</style>"
-              },
-              "blocks": {}
-            },
             "accordion_details": {
               "type": "accordion",
               "name": "Accordion",
@@ -338,7 +330,6 @@
             }
           },
           "block_order": [
-            "breadcrumb_liquid",
             "group_icgrde",
             "text_aEtTtq",
             "accordion_details",

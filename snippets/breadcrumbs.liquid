@@ -1,0 +1,43 @@
+{%- doc -%}
+  Renders a product breadcrumb: Home > Collection > Product title.
+  Only outputs on product pages.
+{%- enddoc -%}
+
+{%- if request.page_type == 'product' -%}
+  {%- liquid
+    assign breadcrumb_product = closest.product | default: product
+    assign breadcrumb_collection = breadcrumb_product.collections.first
+  -%}
+  <nav
+    class="product-breadcrumb"
+    aria-label="breadcrumb"
+  >
+    <a
+      href="{{ routes.root_url }}"
+      class="product-breadcrumb__link"
+    >
+      Home
+    </a>
+    <span
+      class="product-breadcrumb__sep"
+      aria-hidden="true"
+    >
+      &rsaquo;
+    </span>
+    {%- if breadcrumb_collection != blank -%}
+      <a
+        href="{{ breadcrumb_collection.url }}"
+        class="product-breadcrumb__link"
+      >
+        {{- breadcrumb_collection.title -}}
+      </a>
+      <span
+        class="product-breadcrumb__sep"
+        aria-hidden="true"
+      >
+        &rsaquo;
+      </span>
+    {%- endif -%}
+    <span class="product-breadcrumb__current">{{ breadcrumb_product.title }}</span>
+  </nav>
+{%- endif -%}
