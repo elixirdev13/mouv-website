@@ -134,3 +134,11 @@ h6,
 .hero .text-block.h1 > * {
   letter-spacing: 0.08em;
 }
+
+/* Reduce the full-screen hero height on mobile so there isn't a large
+   empty image area above the content (content is bottom-aligned). */
+@media screen and (max-width: 749px) {
+  .hero {
+    min-height: 70svh !important;
+  }
+}
