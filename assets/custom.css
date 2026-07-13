@@ -53,4 +53,10 @@ h6,
   --color-foreground: #ffffff;
   --color-foreground-rgb: 255, 255, 255;
   --color-account-icon: #ffffff;
+  --menu-top-level-font-color: #ffffff;
+  --menu-top-level-font-color-rgb: 255, 255, 255;
+}
+
+#header-component[transparent]:not([data-sticky-state='active']):not(:has(.menu-list__link:is(:hover, [aria-expanded='true']))) :is(.menu-list__link, .menu-list__item) {
+  color: #ffffff;
 }
