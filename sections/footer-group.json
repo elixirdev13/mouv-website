@@ -26,11 +26,11 @@
         "menu_2": "main-menu-1",
         "social_heading": "Social",
         "bottom_logo": "shopify://shop_images/Group_2_3.png",
-        "bottom_logo_visible_height": 380,
+        "bottom_logo_visible_height": 270,
         "bottom_logo_offset": 0,
         "gap": 20,
         "padding-block-start": 120,
-        "padding-block-end": 30
+        "padding-block-end": 0
       }
     },
     "footer_utilities_jLGE8U": {
