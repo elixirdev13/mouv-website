@@ -1100,35 +1100,51 @@
       "blocks": {
         "image_d9RkFe": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_32.png"
+          }
         },
         "image_XYWCE9": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_36_1.png"
+          }
         },
         "image_MaDCqi": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_31.png"
+          }
         },
         "image_Ae7KQn": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_38_1.png"
+          }
         },
         "image_9rnTGh": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_43_1.png"
+          }
         },
         "image_kPLzQi": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_41.png"
+          }
         },
         "image_T4N4km": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_39.png"
+          }
         },
         "image_wTzYVh": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_40.png"
+          }
         }
       },
       "block_order": [
