@@ -151,6 +151,7 @@
         "media_type_1": "image",
         "image_1": "shopify://shop_images/image_53_3.png",
         "media_type_2": "image",
+        "image_2": "shopify://shop_images/image_54.png",
         "stack_media_on_mobile": false,
         "custom_mobile_media": true,
         "media_type_1_mobile": "image",
