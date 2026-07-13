@@ -66,9 +66,15 @@ h6,
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin-block-end: var(--gap, 16px);
+  margin-block-end: 8px;
   font-size: 0.8125rem;
   color: rgb(var(--color-foreground-rgb) / 0.6);
+}
+
+/* Keep the breadcrumb tight to the media/details below it (the product
+   section's row gap would otherwise add a large space under the breadcrumb) */
+.product-information:has(.product-breadcrumb) {
+  row-gap: 0;
 }
 
 .product-breadcrumb__link {
