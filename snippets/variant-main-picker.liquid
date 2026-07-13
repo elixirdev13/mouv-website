@@ -40,12 +40,22 @@
           assign swatch_count = product_option.values | map: 'swatch' | compact | size
           assign variant_style = block_settings.variant_style
 
+          # Treat any option named Color/Colour as a color option so it can
+          # render as circular swatches even without native Shopify swatches.
+          assign option_name_lower = product_option.name | downcase
+          assign is_color_option = false
+          if option_name_lower contains 'color' or option_name_lower contains 'colour'
+            assign is_color_option = true
+          endif
+
           if swatch_count > 0 and block_settings.show_swatches
             if block_settings.variant_style == 'dropdown'
               assign variant_style = 'swatch_dropdown'
             else
               assign variant_style = 'swatch'
             endif
+          elsif is_color_option and block_settings.show_swatches
+            assign variant_style = 'swatch'
           endif
 
           if variant_style == 'buttons' and settings.variant_button_width == 'equal-width-buttons'
@@ -125,9 +135,14 @@
                     endif
                   %}
 
+                  {%- capture swatch_fallback_color -%}
+                    {%- render 'custom-color-swatch', value: product_option_value.name -%}
+                  {%- endcapture -%}
+
                   {% render 'swatch',
                     swatch: product_option_value.swatch,
                     variant_image: featured_media,
+                    fallback_color: swatch_fallback_color,
                     mode: 'unscaled'
                   %}
                 {% else %}

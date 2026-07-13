@@ -1,0 +1,23 @@
+{%- doc -%}
+  Returns a hex color for a given color option value name.
+  Used as a fallback so the Color option can render as solid circular
+  swatches even when no native Shopify swatch is configured.
+
+  Add your exact brand colors below (lowercase name => hex).
+
+  @param {string} value - The option value name (e.g. "Purple Dusk")
+
+  @example
+  {%- capture hex %}{% render 'custom-color-swatch', value: option_value.name %}{% endcapture -%}
+{%- enddoc -%}
+{%- liquid
+  assign name = value | downcase | strip
+  case name
+    when 'purple dusk'
+      echo '#6b5b95'
+    when 'minty blue'
+      echo '#a8d5ba'
+    else
+      echo ''
+  endcase
+-%}
