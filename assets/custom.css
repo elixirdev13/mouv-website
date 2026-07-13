@@ -143,13 +143,14 @@ h6,
   }
 
   /* Hero banner buttons: stack full-width on mobile */
-  .hero .button-group {
-    flex-direction: column;
+  .hero .mobile-column {
     width: 100%;
   }
 
-  .hero .button-group .button {
-    width: 100%;
+  .hero .mobile-column .button,
+  .hero .mobile-column .button-secondary {
+    --size-style-width-mobile: 100% !important;
+    width: 100% !important;
   }
 
   /* "Connect with us" section: reverse order on mobile (image first),
