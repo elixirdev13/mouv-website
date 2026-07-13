@@ -162,98 +162,6 @@
                 "price_tVjtKg"
               ]
             },
-            "accordion_details": {
-              "type": "accordion",
-              "name": "Accordion",
-              "settings": {
-                "icon": "caret",
-                "dividers": true,
-                "type_preset": "h6",
-                "inherit_color_scheme": true,
-                "color_scheme": "scheme-1",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "acc_row_1": {
-                  "type": "_accordion-row",
-                  "name": "Lorem Ipsum",
-                  "settings": {
-                    "heading": "Lorem Ipsum",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "acc_text_1": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros.</p>",
-                        "width": "100%"
-                      }
-                    }
-                  },
-                  "block_order": [
-                    "acc_text_1"
-                  ]
-                },
-                "acc_row_2": {
-                  "type": "_accordion-row",
-                  "name": "Lorem Ipsum",
-                  "settings": {
-                    "heading": "Lorem Ipsum",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "acc_text_2": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros.</p>",
-                        "width": "100%"
-                      }
-                    }
-                  },
-                  "block_order": [
-                    "acc_text_2"
-                  ]
-                },
-                "acc_row_3": {
-                  "type": "_accordion-row",
-                  "name": "Lorem Ipsum",
-                  "settings": {
-                    "heading": "Lorem Ipsum",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "acc_text_3": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros.</p>",
-                        "width": "100%"
-                      }
-                    }
-                  },
-                  "block_order": [
-                    "acc_text_3"
-                  ]
-                }
-              },
-              "block_order": [
-                "acc_row_1",
-                "acc_row_2",
-                "acc_row_3"
-              ]
-            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -332,7 +240,6 @@
           "block_order": [
             "group_icgrde",
             "text_aEtTtq",
-            "accordion_details",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi"
           ]
