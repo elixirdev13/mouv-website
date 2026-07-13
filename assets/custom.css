@@ -141,4 +141,14 @@ h6,
   .hero {
     min-height: 70svh !important;
   }
+
+  /* Hero banner buttons: stack full-width on mobile */
+  .hero .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero .button-group .button {
+    width: 100%;
+  }
 }
