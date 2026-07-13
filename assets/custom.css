@@ -48,3 +48,9 @@ h6,
 .text-block.h6 :is(h1, h2, h3, h4, h5, h6) {
   font-family: 'Garalama', sans-serif;
 }
+
+#header-component[transparent]:not([data-sticky-state='active']):not(:has(.menu-list__link:is(:hover, [aria-expanded='true']))) {
+  --color-foreground: #ffffff;
+  --color-foreground-rgb: 255, 255, 255;
+  --color-account-icon: #ffffff;
+}
