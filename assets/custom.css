@@ -151,4 +151,19 @@ h6,
   .hero .button-group .button {
     width: 100%;
   }
+
+  /* "Connect with us" section: reverse order on mobile (image first),
+     center content, and make button full width. */
+  #shopify-section-section_rmxxjk .section-content-wrapper.mobile-column {
+    flex-direction: column-reverse;
+  }
+
+  #shopify-section-section_rmxxjk .section-content-wrapper .layout-panel-flex {
+    align-items: center;
+    text-align: center;
+  }
+
+  #shopify-section-section_rmxxjk .section-content-wrapper .button {
+    width: 100%;
+  }
 }
