@@ -142,9 +142,11 @@ h6,
     min-height: 70svh !important;
   }
 
-  /* Hero banner buttons: stack full-width on mobile */
+  /* Hero banner buttons: stack full-width on mobile with side padding */
   .hero .mobile-column {
     width: 100%;
+    padding-inline: 16px;
+    box-sizing: border-box;
   }
 
   .hero .mobile-column .button,
