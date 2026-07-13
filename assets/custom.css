@@ -108,3 +108,23 @@ h6,
 #header-component[transparent]:has(.menu-list__link:is(:hover, [aria-expanded='true'])) .header-logo__image {
   filter: brightness(0);
 }
+
+/* PDP buy buttons: hide the quantity selector and place "Add to cart"
+   (secondary) next to the checkout button, side by side and equal width. */
+.product-information .product-form-buttons .quantity-selector-wrapper,
+.product-information .product-form-buttons .quantity-selector,
+.product-information .product-form-buttons .quantity-label,
+.product-information .product-form-buttons .quantity-rules {
+  display: none;
+}
+
+.product-information .product-form-buttons {
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.product-information .product-form-buttons
+  > *:not(.quantity-selector-wrapper, .quantity-selector, .quantity-rules, .quantity-label, .volume-pricing, .product-form-text__error) {
+  flex: 1 1 50%;
+  min-width: 0;
+}
