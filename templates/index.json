@@ -996,7 +996,7 @@
             "text_7RBEVL": {
               "type": "text",
               "settings": {
-                "text": "<p>Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations.</p>",
+                "text": "<p>Group runs, shop talk, and first access to new drops. Follow along, or just drop by — the door's open</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1021,7 +1021,7 @@
             "button_DCtcLH": {
               "type": "button",
               "settings": {
-                "label": "Shop now",
+                "label": "Follow @mouv.mnt",
                 "link": "shopify://collections/all",
                 "open_in_new_tab": false,
                 "style_class": "button",
@@ -1159,9 +1159,9 @@
       ],
       "name": "Floating image CTA",
       "settings": {
-        "heading": "Lorem Ipsum",
-        "text": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros.</p>",
-        "button_label": "Lorem Ipsum",
+        "heading": "STAY IN THE LOOP",
+        "text": "<p>New drops, restocks, and first calls for our next community run.</p>",
+        "button_label": "Sign Up",
         "button_link": "",
         "color_scheme": "",
         "section_width": "full-width",
