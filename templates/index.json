@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Lorem Ipsum Dolor</p>",
+            "text": "<p><strong>FREEDOM IN MOVEMENT</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -42,7 +42,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+            "text": "<p>A community space for runners and riders. Curated gear, honest advice, no noise.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
