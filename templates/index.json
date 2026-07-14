@@ -509,7 +509,7 @@
       ],
       "name": "Tabbed collection products",
       "settings": {
-        "heading": "Lorem Ipsum",
+        "heading": "BEST SELLERS",
         "color_scheme": "",
         "section_width": "page-width",
         "products_limit": 4,
@@ -608,7 +608,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Lorem Ipsum dolor</p>",
+                    "text": "<p><strong>GRIP. CONTROL. NO COMPROMISE.</strong></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
