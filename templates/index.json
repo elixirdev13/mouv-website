@@ -798,7 +798,7 @@
             "text_tfgAB4": {
               "type": "text",
               "settings": {
-                "text": "<p>Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations.</p>",
+                "text": "<p>Fabric research, race-day fit, and the details most brands skip. This is the gear our own team rides and runs in.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -912,7 +912,7 @@
       "name": "Story image collage",
       "settings": {
         "heading": "Get to know our story",
-        "text": "<p>Lorem ipsum dolor sit amet consectetur. Accumsan aliquam mi ac sapien sed eros. Urna lacus lobortis facilisis nec sed sagittis.</p>",
+        "text": "<p>MOÚV started as a meeting point for runners and riders who wanted more than a transaction. What began as a small shelf of imported gear is now a community space — a place to talk splits, get properly fitted, and find out what's actually worth buying.</p>",
         "button_label": "Lorem Ipsum",
         "button_link": "",
         "color_scheme": "",
