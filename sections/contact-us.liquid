@@ -104,14 +104,15 @@
 
 {% stylesheet %}
   .contact-us {
+    --contact-page-margin: 16px;
     padding-block-start: var(--contact-padding-top);
     padding-block-end: var(--contact-padding-bottom);
-    padding-inline: 16px;
+    padding-inline: var(--contact-page-margin);
   }
 
   @media screen and (min-width: 750px) {
     .contact-us {
-      padding-inline: 40px;
+      --contact-page-margin: 40px;
     }
   }
 
@@ -120,8 +121,9 @@
     font-weight: 800;
     font-size: var(--contact-heading-size);
     line-height: 0.95;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
+    text-align: center;
   }
 
   .contact-us__grid {
